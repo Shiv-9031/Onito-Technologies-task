@@ -4,7 +4,7 @@ import ErrorHandler from "../Error/ErrorHandler.mjs";
 //get all movies detail
 
 export const getAllMovies = async (req, res, next) => {
-  let getDetail = pool.query("select * from movies", function (err, result) {
+  let getDetail = pool.query("select * from movies order by runtimeMinutes desc limit 10", function (err, result) {
     if (err) throw err;
   
     res.send({

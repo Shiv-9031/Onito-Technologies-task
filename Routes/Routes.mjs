@@ -6,7 +6,7 @@ const Routes=express.Router();
 Routes.route('/longest-duration-movies').get(getAllMovies);
 Routes.route('/new-movie').post(createMoviesList);
 
-Routes.route('/get').get(getAllRating);
+// Routes.route('/get').get(getAllRating);
 Routes.route('/top-rated-movies').get(topRatedMovies);
 
 export default Routes;
