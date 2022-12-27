@@ -1,23 +1,26 @@
 import pool from "../config/databaseConn.mjs";
 import ErrorHandler from "../Error/ErrorHandler.mjs";
+import CatchAsync from "../Error/CatchAsync.mjs";
 
 //get all movies detail
 
-export const getAllMovies = async (req, res, next) => {
-  let getDetail = pool.query("select * from movies order by runtimeMinutes desc limit 10", function (err, result) {
-    if (err) throw err;
-  
-    res.send({
-        success:true,
-        result
-    })
-  });
-
+export const getAllMovies =CatchAsync(
+  async (req, res, next) => {
+    let getDetail = pool.query("select * from movies order by runtimeMinutes desc limit 10", function (err, result) {
+      if (err) throw err;
+    
+      res.send({
+          success:true,
+          result
+      })
+    });
+  }
+);
 
   //create new movies details
   
-};
-export const createMoviesList = async (req, res, next) => {
+
+export const createMoviesList = CatchAsync(async (req, res, next) => {
   const { tconst,
     titleType,
     primaryTitle,
@@ -41,4 +44,5 @@ export const createMoviesList = async (req, res, next) => {
   res.status(200).json({
     success:true,
   });
-};
+}
+);
